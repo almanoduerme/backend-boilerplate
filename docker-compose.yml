@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  mongo:
+    image: mongo:7.0.5
+    container_name: docker-mongo
+    ports:
+      - 27017:27017
+    restart: on-failure:5
+  node-starter:
+    build: .
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/
+    ports:
+      - 8000:8000
